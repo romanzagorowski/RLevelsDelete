@@ -1,0 +1,7 @@
+LIBRARY RLevelsDelete
+
+EXPORTS	Init
+		Done
+		Execute
+		ReplaceStr
+		IntrfProcsRec
