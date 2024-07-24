@@ -9,6 +9,7 @@ static const PChar scriptShortName = "RLevelsDelete";
 static const PChar scriptDescription = "Deletes all R levels";
 
 static int maxRLevel = 7;
+static PChar symbol = nullptr;
 
 EXPORT void __stdcall Init()
 {
@@ -19,6 +20,8 @@ EXPORT void __stdcall Init()
 
 	RegOption("MaxRLevel", ot_Integer, &maxRLevel);
 	SetOptionRange("MaxRLevel", -1, 10);
+
+	RegOption("Symbol", ot_String, &symbol);
 }
 
 EXPORT void __stdcall Done()
@@ -30,7 +33,11 @@ EXPORT void __stdcall Execute()
 {
 	Print("EXPORT void __stdcall Execute()");
 
-	SetCurrencyAndTimeframe("USDCHF", 15);
+	Print(
+		std::format("INFO: symbol is '{}'", symbol)
+	);
+
+	SetCurrencyAndTimeframe(symbol, 15);
 
 	for(int i = -1; i <= maxRLevel; ++i)
 	{

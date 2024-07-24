@@ -1432,6 +1432,10 @@ bool SetCurrencyAndTimeframe(const PChar Symbol, int TimeFrame)
 {
   return rec.SetCurrencyAndTimeframe(rec.pSetCurrencyAndTimeframe, Symbol, TimeFrame);
 }
+bool SetCurrencyAndTimeframe(const std::string& symbol, int timeframe)
+{
+    return SetCurrencyAndTimeframe(symbol.c_str(), timeframe);
+}
 
 //-----Get market information-------------------------------------------------
 double MarketInfo(PChar Symbol, TMarketInfo _type)
