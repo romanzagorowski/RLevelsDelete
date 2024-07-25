@@ -33,11 +33,24 @@ EXPORT void __stdcall Execute()
 {
 	Print("EXPORT void __stdcall Execute()");
 
+	const int timeframe = 15;
+
 	Print(
-		std::format("INFO: symbol is '{}'", symbol)
+		std::format("INFO: symbol is '{}', timeframe is {}", symbol, timeframe)
 	);
 
-	SetCurrencyAndTimeframe(symbol, 15);
+	if (SetCurrencyAndTimeframe(symbol, timeframe))
+	{
+		Print(
+			std::format("INFO: SetCurenctyAndTimeframe() succeeded. symbol='{}', timeframe={}", symbol, timeframe)
+		);
+	}
+	else
+	{
+		Print(
+			std::format("ERRO: SetCurenctyAndTimeframe() failed. symbol='{}', timeframe={}", symbol, timeframe)
+		);
+	}
 
 	for(int i = -1; i <= maxRLevel; ++i)
 	{
@@ -57,7 +70,6 @@ EXPORT void __stdcall Execute()
 		}
 		else
 		{
-
 			Print(
 				std::format("INFO: Execute(): The object named '{}' does not exist.", objectName)
 			);
